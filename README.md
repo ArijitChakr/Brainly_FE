@@ -1,6 +1,6 @@
 # Brainly frontend
 
-## Tecchnologies used:
+## Technologies used:
 
 - React
 - Typescript

@@ -1,4 +1,4 @@
-export const BACKEND_URL = "http://13.49.69.74:3000";
+export const BACKEND_URL = "https://brainly-be.onrender.com";
 
 export type ContentType =
   | "youtube"

@@ -6,3 +6,6 @@
 - Typescript
 - Tailwind
 - react-router-dom
+
+## hosted at
+[https://secondbrain-react.netlify.app]

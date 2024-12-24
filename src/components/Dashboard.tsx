@@ -8,7 +8,7 @@ import { Sidebar } from "./SidebarComp";
 import { ShareLinkComp } from "./ShareModal";
 import { useContent } from "../hooks/GetContent";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { BACKEND_URL, FRONTEND_URL } from "../config";
 
 export function Dashboard() {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export function Dashboard() {
         },
       }
     );
-    setShareLink(`localhost:5173/share/${response.data.link}`);
+    setShareLink(`${FRONTEND_URL}/share/${response.data.link}`);
     setShare(true);
   }
 

@@ -1,4 +1,5 @@
 export const BACKEND_URL = "https://brainly-be.onrender.com";
+export const FRONTEND_URL = "https://secondbrain-react.netlify.app";
 
 export type ContentType =
   | "youtube"

@@ -20,7 +20,7 @@ interface CardType {
   link: string;
   id: string;
   isDeletable: boolean;
-  fetchContent: () => void;
+  fetchContent?: () => void;
 }
 
 const embedComponents: Record<
@@ -73,8 +73,9 @@ export function Card({
         id: id,
       },
     });
-
-    fetchContent();
+    if (fetchContent) {
+      fetchContent();
+    }
   }
   return (
     <div className="w-80 p-4 border border-card-border rounded-md">

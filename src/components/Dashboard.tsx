@@ -16,8 +16,6 @@ export function Dashboard() {
   const [share, setShare] = useState<boolean>(false);
   const [shareLink, setShareLink] = useState<string>("");
 
-  console.log(contents);
-
   async function shareBrain() {
     const response = await axios.post(
       `${BACKEND_URL}/api/v1/brain/share`,

@@ -4,7 +4,6 @@ import { DeleteIcon } from "../icons/DeleteIcon";
 import {
   YouTubeEmbed,
   LinkedInEmbed,
-  XEmbed,
   InstagramEmbed,
 } from "react-social-media-embed";
 import { BACKEND_URL, ContentType } from "../config";
@@ -13,6 +12,7 @@ import { TwitterIcon } from "../icons/TwitterIcon";
 import { PostIcon } from "../icons/PostIcon";
 import { DocumentIcon } from "../icons/LinkdinIcon";
 import axios from "axios";
+import { Tweetembed } from "../ui/Tweetembed";
 
 interface CardType {
   type: ContentType;
@@ -30,9 +30,7 @@ const embedComponents: Record<
   youtube: ({ link }: { link: string }) => (
     <YouTubeEmbed url={link} className="w-full" />
   ),
-  twitter: ({ link }: { link: string }) => (
-    <XEmbed url={link} className="w-full" />
-  ),
+  twitter: ({ link }: { link: string }) => <Tweetembed id={link} />,
   linkdin: ({ link }: { link: string }) => (
     <LinkedInEmbed url={link} className="w-full" />
   ),

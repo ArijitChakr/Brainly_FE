@@ -26,7 +26,7 @@ export function Modal({
       `${BACKEND_URL}/api/v1/content`,
       {
         title,
-        link,
+        link: type === "twitter" ? link?.split("/").pop() : link,
         type,
         tags: [],
       },

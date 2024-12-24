@@ -20,6 +20,7 @@ interface CardType {
   link: string;
   id: string;
   isDeletable: boolean;
+  fetchContent: () => void;
 }
 
 const embedComponents: Record<
@@ -52,7 +53,14 @@ const contentIcon = {
   googledoc: () => <DocumentIcon size="size-6" />,
 };
 
-export function Card({ title, link, type, id, isDeletable }: CardType) {
+export function Card({
+  title,
+  link,
+  type,
+  id,
+  isDeletable,
+  fetchContent,
+}: CardType) {
   const EmbedComponents = embedComponents[type];
   const ContentIcon = contentIcon[type];
 
@@ -66,7 +74,7 @@ export function Card({ title, link, type, id, isDeletable }: CardType) {
       },
     });
 
-    window.location.reload();
+    fetchContent();
   }
   return (
     <div className="w-80 p-4 border border-card-border rounded-md">

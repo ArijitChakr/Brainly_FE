@@ -9,9 +9,10 @@ interface AuthType {
     reference: React.Ref<HTMLInputElement>;
   }[];
   onSubmit: () => void;
+  loading?: boolean;
 }
 
-export function AuthPage({ type, inputs, onSubmit }: AuthType) {
+export function AuthPage({ type, inputs, onSubmit, loading }: AuthType) {
   return (
     <div className="h-screen w-full flex justify-center items-center bg-auth-bg">
       <div className="border border-white shadow-xl p-8 bg-white rounded-lg">
@@ -35,6 +36,7 @@ export function AuthPage({ type, inputs, onSubmit }: AuthType) {
             onClick={onSubmit}
           />
         </div>
+        {loading && <p className="text-center">Loading...</p>}
       </div>
     </div>
   );

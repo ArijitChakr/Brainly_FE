@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AuthPage } from "../ui/AuthPage";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
@@ -8,8 +8,10 @@ export function Signup() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function signup() {
+    setLoading(true);
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
 
@@ -18,6 +20,7 @@ export function Signup() {
       password,
     });
     alert("You have successfully signed up");
+    setLoading(false);
     navigate("/signin");
   }
   return (
@@ -36,6 +39,7 @@ export function Signup() {
         },
       ]}
       onSubmit={signup}
+      loading={loading}
     />
   );
 }

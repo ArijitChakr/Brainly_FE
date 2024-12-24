@@ -4,6 +4,7 @@ import { CloseIcon } from "../icons/CrossIcon";
 import { Button } from "../ui/button";
 import { Input } from "../ui/Input";
 import axios from "axios";
+import { useContent } from "../hooks/GetContent";
 
 export function Modal({
   closeModal,
@@ -15,6 +16,7 @@ export function Modal({
   const [type, setType] = useState<ContentType>("youtube");
   const titleRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
+  const { fetchContent } = useContent();
 
   async function addContent() {
     const title = titleRef.current?.value;
@@ -34,8 +36,9 @@ export function Modal({
         },
       }
     );
+
+    await fetchContent();
     closeModal();
-    window.location.reload();
   }
 
   return (

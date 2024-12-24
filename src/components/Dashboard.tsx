@@ -12,9 +12,11 @@ import { BACKEND_URL } from "../config";
 
 export function Dashboard() {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const { contents, username } = useContent();
+  const { contents, username, loading, fetchContent } = useContent();
   const [share, setShare] = useState<boolean>(false);
   const [shareLink, setShareLink] = useState<string>("");
+
+  console.log(contents);
 
   async function shareBrain() {
     const response = await axios.post(
@@ -60,27 +62,30 @@ export function Dashboard() {
           </div>
         </div>
         <div className="flex gap-4 p-4 flex-wrap">
-          {contents?.length > 0 ? (
-            contents?.map(({ type, title, link, _id }, index) => (
-              <Card
-                key={index}
-                title={title}
-                type={type}
-                link={link}
-                id={_id}
-                isDeletable={true}
-              />
-            ))
-          ) : (
-            <h1 className="mx-auto font-bold text-2xl my-6">
-              No Contents added yet, please add some content to view here
-            </h1>
-          )}
+          {contents?.length > 0
+            ? contents?.map(({ type, title, link, _id }, index) => (
+                <Card
+                  key={index}
+                  title={title}
+                  type={type}
+                  link={link}
+                  id={_id}
+                  isDeletable={true}
+                  fetchContent={fetchContent}
+                />
+              ))
+            : !loading && (
+                <h1 className="mx-auto font-bold text-2xl my-6">
+                  No Contents added yet, please add some content to view here
+                </h1>
+              )}
         </div>
+        {loading && <p className="text-xl font-bold text-center">Loading...</p>}
         <Modal
           openModal={openModal}
           closeModal={() => {
             setOpenModal(false);
+            fetchContent();
           }}
         />
         <ShareLinkComp
